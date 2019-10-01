@@ -1,12 +1,19 @@
 class Tomagotchi {
-    constructor() {
-        this.hunger = 10;
-        this.sleepiness = 10;
-        this.boredom = 10;
+    constructor(name) {
+        this.name = name;
+        this.hunger = 0;
+        this.sleepiness = 0;
+        this.boredom = 0;
         this.age = 0;
     }
 };
 
-const firstTomagotchi = new Tomagotchi();
+// const name = prompt("Name your pet")
+const firstTomagotchi = new Tomagotchi(name);
 
+const $div = $("div");
+const tomagotchiArray = Object.values(firstTomagotchi);
 
+for (let i = 1; i < 5; i++){
+   $div[i-1].append(tomagotchiArray[i]);
+};
