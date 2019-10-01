@@ -6,3 +6,7 @@ class Tomagotchi {
         this.age = 0;
     }
 };
+
+const firstTomagotchi = new Tomagotchi();
+
+
