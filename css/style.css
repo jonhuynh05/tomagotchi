@@ -85,8 +85,6 @@ button {
 img {
     margin-top: 5px;
     position: relative;
-    /* animation: play 2s alternate; */
-    /* animation-play-state: running; */
 }
 
 .alive {
@@ -119,4 +117,21 @@ img {
 
 .start:hover {
     background-color: rgb(112, 203, 255);
+    font-weight: bold;
+}
+
+#play:hover {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+#sleep:hover {
+    background-color: rgb(40, 38, 146);
+    color:white;
+    font-weight: bold;
+}
+
+#feed:hover {
+    background-color: rgb(68, 212, 39);
+    font-weight: bold;
 }
