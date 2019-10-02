@@ -1,6 +1,7 @@
 
 const oldImage = "https://wikimon.net/images/thumb/8/84/Agumon_DCDAPM.jpg/200px-Agumon_DCDAPM.jpg";
 const newImage = "https://vignette.wikia.nocookie.net/digi-world/images/6/60/Greymon.gif/revision/latest?cb=20120103233635"
+const deadImage = "http://www.clker.com/cliparts/U/H/t/l/l/W/rip-tombstone.svg"
 
 
 
@@ -14,7 +15,7 @@ class Tomagotchi {
     }
 
     timer () {
-        setInterval(() => {
+        const interval = setInterval(() => {
         $("#clock").text(`Timer: ${game.timer} sec`);
         game.timer++;
         if(game.timer%10 === 1 && game.timer >= 10){
@@ -29,6 +30,11 @@ class Tomagotchi {
         }
         if($(".agumon").attr("src") != newImage){
             this.morph();
+        }
+        if(this.hunger >= 2 || this.sleepiness >= 2 || this.boredom >= 2 || this.age > 100){
+            clearInterval(interval);
+            this.dead();
+            $(".status").text(`Status: Dead`)
         }
     }, 1000); }
 
@@ -58,6 +64,13 @@ class Tomagotchi {
             }        
         }
     )}
+
+    dead () {
+        $("img").fadeOut(function() {
+            $(this).attr({src: deadImage, style: "width: 150px"})
+            $(this).fadeIn()
+        }); 
+    }
 };
 
 
@@ -73,7 +86,6 @@ const createTomagotchi = () => {
 const game = {
     // tomagatchis: [],
     timer: 0,
-    // hungerTimer: 0,
     // render() {
 
     // }
@@ -81,15 +93,6 @@ const game = {
     
 };
 
-
-// const hunger = () => {
-//     setInterval(() => {
-//     game.hungerTimer++;
-//     if(game.hungerTimer%10 === 1){
-//         firstTomagotchi.hunger++ ;
-//         $("#hunger").text(`Hunger: ${firstTomagotchi.hunger}`)
-//     }
-// }, 1000); }
 
 const move = () => {
     $("img").animate({width: 110}, 3000, function(){
