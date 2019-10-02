@@ -27,20 +27,33 @@ class Tomagotchi {
             this.boredom++;
             this.age++;
             $("#hunger").text(`Hunger: ${this.hunger}`)
-            $("#sleepiness").text(`Sleepiness: ${this.sleepiness}`)
+            $("#sleepiness").text(`Tired: ${this.sleepiness}`)
             $("#boredom").text(`Boredom: ${this.boredom}`)
             $("#age").text(`Age: ${this.age}`)
         }
     }, 1000); }
 
+    buttonClicks () {
+        $("button").on("click", (e) => {
+            if(e.target.id === "feed"){
+                this.hunger--
+                $("#hunger").text(`Hunger: ${this.hunger}`)
+            }
+            else if(e.target.id === "sleep"){
+                this.sleepiness--
+                $("#sleepiness").text(`Tired: ${this.sleepiness}`)
 
+            }            
+            else if(e.target.id === "play"){
+                this.boredom--
+                $("#boredom").text(`Boredom: ${this.boredom}`)
+            }        
+        }
+    )}
 };
 
 // const name = prompt("Name your pet")
-const firstTomagotchi = new Tomagotchi(name);
-
-const $divStatus = $(".status");
-const tomagotchiArray = Object.values(firstTomagotchi);
+const newTomagotchi = new Tomagotchi(name);
 
 const game = {
     // tomagatchis: [],
@@ -49,6 +62,7 @@ const game = {
     // render() {
 
     // }
+    
     
 };
 
@@ -63,5 +77,5 @@ const game = {
 // }, 1000); }
 
 
-firstTomagotchi.timer();
-// firstTomagotchi.hunger();
+newTomagotchi.timer();
+newTomagotchi.buttonClicks();

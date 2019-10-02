@@ -5,11 +5,13 @@
 }
 
 .container {
-    height: 37rem;
+    height: 30rem;
     width: 45rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 2px solid black;
+    position: relative;
 }
 
 .status-container {
@@ -38,7 +40,7 @@
     display: flex;
     justify-content: left;
     text-align: center;
-
+    /* border: 2px solid red; */
 }
 
 button {
