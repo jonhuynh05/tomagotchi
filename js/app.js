@@ -23,6 +23,11 @@ class Tomagotchi {
             this.sleepiness++;
             this.boredom++;
             this.age++;
+
+
+            // UPDATE INCREASES WITH MATH RANDOM
+
+
             $("#hunger").text(`Hunger: ${this.hunger}`)
             $("#sleepiness").text(`Tired: ${this.sleepiness}`)
             $("#boredom").text(`Boredom: ${this.boredom}`)
@@ -52,18 +57,19 @@ class Tomagotchi {
 
     buttonClicks () {
         $("button").on("click", (e) => {
-            if(e.target.id === "feed" && this.hunger > 0){
+            if(e.target.id === "feed" && this.hunger > 0 && $("img").attr("class") !== "dead"){
                 this.hunger--
                 $("#hunger").text(`Hunger: ${this.hunger}`)
             }
-            else if(e.target.id === "sleep" && this.sleepiness > 0){
+            else if(e.target.id === "sleep" && this.sleepiness > 0 && $("img").attr("class") !== "dead"){
                 this.sleepiness--
                 $("#sleepiness").text(`Tired: ${this.sleepiness}`)
 
             }            
-            else if(e.target.id === "play" && this.boredom > 0){
+            else if(e.target.id === "play" && this.boredom > 0 && $("img").attr("class") !== "dead"){
                 this.boredom--
                 $("#boredom").text(`Boredom: ${this.boredom}`)
+                $("img").attr("class", "play")
             }        
         }
     )}
@@ -109,7 +115,7 @@ const game = {
 
 //RUNNING CODE
 $("button").on("click", (e) => {
-    if(e.target.className = "start"){
+    if(e.target.className === "start"){
         game.start()
     }
     // if(e.target.className = "hatch"){

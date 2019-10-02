@@ -99,13 +99,17 @@ img {
 }
 
 .dead {
-    
+
 }
 
-/* @keyframes play {
-    from { transform: translateY(0.5em); }
-    to { transform: translateY(-0.5em); }
-} */
+.play{
+    animation: play 1s, alive 1s infinite alternate;
+}
+
+@keyframes play {
+    from { transform: translateY(2em); }
+    to { transform: translateY(-2em); }
+}
 
 #start {
     width: 20%;
