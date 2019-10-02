@@ -1,6 +1,7 @@
 //IMAGE LIBRARY
-const oldImage = "https://wikimon.net/images/thumb/8/84/Agumon_DCDAPM.jpg/200px-Agumon_DCDAPM.jpg";
-const newImage = "https://vignette.wikia.nocookie.net/digi-world/images/6/60/Greymon.gif/revision/latest?cb=20120103233635"
+const agumon = "https://vignette.wikia.nocookie.net/p__/images/a/af/Agumon_DA_The_Movie.png/revision/latest?cb=20190707155018&path-prefix=protagonist";
+const greymon = "https://vignette.wikia.nocookie.net/digimon-adventure5140/images/c/ca/Greymon_tri.png/revision/latest?cb=20171010042426"
+const metalgreymon = "https://vignette.wikia.nocookie.net/p__/images/f/fd/Campaign_metalgrey_january20_2017.png/revision/latest?cb=20170130012523&path-prefix=protagonist"
 const deadImage = "http://www.clker.com/cliparts/U/H/t/l/l/W/rip-tombstone.svg"
 
 
@@ -18,41 +19,56 @@ class Tomagotchi {
         const interval = setInterval(() => {
         $("#clock").text(`Timer: ${game.timer} sec`);
         game.timer++;
+
         if(game.timer%5 === 1 && game.timer >= 5){
-            this.hunger++;
-            this.sleepiness++;
-            this.boredom++;
+            // this.hunger++;
+            // this.sleepiness++;
+            // this.boredom++;
+            // this.age++;
+            this.hunger += Math.floor(Math.random() * 3 + 1);
+            this.sleepiness += Math.floor(Math.random() * 3 + 1);
+            this.boredom += Math.floor(Math.random() * 3 + 1);
             this.age++;
-
-
-            // UPDATE INCREASES WITH MATH RANDOM
-
-
+            $(".lights-out").attr("class", "container");
+            $(".play").attr("class", "agumon alive");
+            $(".feed").attr("class", "agumon alive");
             $("#hunger").text(`Hunger: ${this.hunger}`)
             $("#sleepiness").text(`Tired: ${this.sleepiness}`)
             $("#boredom").text(`Boredom: ${this.boredom}`)
             $("#age").text(`Age: ${this.age}`)
         }
-        if($(".agumon").attr("src") != newImage){
-            this.morph();
+        if($("img").attr("src") === agumon){
+            this.morph1();
         }
-        if(this.hunger >= 2 || this.sleepiness >= 2 || this.boredom >= 2 || this.age > 100){
+        if($("img").attr("src") === greymon){
+            this.morph2();
+        }
+        if(this.hunger >= 10 || this.sleepiness >= 10 || this.boredom >= 10 || this.age > 100){
             clearInterval(interval);
             this.dead();
             $(".status").text(`Status: Dead`).css("color", "red")
         }
-        if(this.age > 0 && $("button").length < 5){
-            this.readyParent()
-        }
+        // if(this.age > 0 && $("button").length < 5){
+        //     this.readyParent()
+        // }
     }, 1000); }
 
-    morph() {
-        if (this.age > 0){
-            $(".agumon").fadeOut(function() {
-                $(this).attr("src", newImage)
+    morph1() {
+        if (this.age > 0 && this.age < 4){
+            $("img").fadeOut(function() {
+                $(this).attr("src", greymon)
                 $(this).fadeIn()
             }); 
-        }; 
+        }
+    }
+    morph2() {
+        if (this.age >= 4){
+            $("img").fadeOut(function() {
+                $(this).attr("src", metalgreymon)
+                $(this).fadeIn()
+            }); 
+        }
+
     }
 
     buttonClicks () {
@@ -60,11 +76,11 @@ class Tomagotchi {
             if(e.target.id === "feed" && this.hunger > 0 && $("img").attr("class") !== "dead"){
                 this.hunger--
                 $("#hunger").text(`Hunger: ${this.hunger}`)
+                $("img").attr("class", "feed")
             }
             else if(e.target.id === "sleep" && this.sleepiness > 0 && $("img").attr("class") !== "dead"){
                 this.sleepiness--
                 $("#sleepiness").text(`Tired: ${this.sleepiness}`)
-                // $("img").attr("class", "lights-out")
                 $(".container").attr("class", "container lights-out")
 
             }            
@@ -72,9 +88,11 @@ class Tomagotchi {
                 this.boredom--
                 $("#boredom").text(`Boredom: ${this.boredom}`)
                 $("img").attr("class", "play")
+
             }        
         }
-    )}
+    )
+}
 
     dead () {
         $("img").fadeOut(function() {
@@ -86,7 +104,7 @@ class Tomagotchi {
 
     readyParent () {
             const $button = $("<button/>").attr("class", "hatch").text("Hatch an egg");
-            $("body").append($button);
+            $(".start").after($button);
     }
 };
 
@@ -94,9 +112,6 @@ class Tomagotchi {
 const game = {
     tomagotchiArr: [],
     timer: 0,
-    // render() {
-
-    // }
     start () {
         const name = prompt("Name your pet");
         const newTomagotchi = new Tomagotchi(name);
@@ -104,23 +119,22 @@ const game = {
         this.tomagotchiArr.push(newTomagotchi)
         newTomagotchi.timer();
         newTomagotchi.buttonClicks();
-        newTomagotchi.morph();
     },
 
-    hatchEgg() {
-        game.start();
-        $("body").append($(".container").clone())
-    }
+    // hatchEgg() {
+    //     game.start();
+    //     $(".container").after($(".container").clone())
+    // }
 };
 
 
 
 //RUNNING CODE
 $("button").on("click", (e) => {
-    if(e.target.className === "start"){
+    if(e.target.className === "start" && game.timer === 0){
         game.start()
     }
-    // if(e.target.className = "hatch"){
+    // if(e.target.className === "hatch"  && $(".container").length < 2){
     //     game.hatchEgg()
     // }
 

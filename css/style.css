@@ -47,7 +47,6 @@
     display: flex;
     justify-content: left;
     text-align: center;
-    /* border: 2px solid red; */
 }
 
 button {
@@ -113,13 +112,18 @@ img {
     animation: lights 2s;
 }
 
-/* @keyframes lights {
-    0% { opacity: 0 };
-    50% { opacity: 0 };
-    100% { opacity: 1 };
-} */
 @keyframes lights {
     50% { background-color: navy };
+}
+
+.feed {
+    animation: feed 1s ease, alive 1s infinite alternate;
+}
+
+
+@keyframes feed {
+    /* 0% { width: 200px }; */
+    100% { width: 220px };
 }
 
 #start {
@@ -146,5 +150,10 @@ img {
 
 #feed:hover {
     background-color: rgb(68, 212, 39);
+    font-weight: bold;
+}
+
+.hatch:hover {
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
     font-weight: bold;
 }
