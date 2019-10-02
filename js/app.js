@@ -64,6 +64,8 @@ class Tomagotchi {
             else if(e.target.id === "sleep" && this.sleepiness > 0 && $("img").attr("class") !== "dead"){
                 this.sleepiness--
                 $("#sleepiness").text(`Tired: ${this.sleepiness}`)
+                // $("img").attr("class", "lights-out")
+                $(".container").attr("class", "container lights-out")
 
             }            
             else if(e.target.id === "play" && this.boredom > 0 && $("img").attr("class") !== "dead"){
