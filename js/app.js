@@ -4,6 +4,12 @@ const newImage = "https://vignette.wikia.nocookie.net/digi-world/images/6/60/Gre
 const deadImage = "http://www.clker.com/cliparts/U/H/t/l/l/W/rip-tombstone.svg"
 
 
+// const move = () => {
+//     $("img").animate({width: 150}, 3000, function(){
+//     });
+//     $("img").animate({width: 200}, 3000, function(){
+//     });   
+// }
 
 class Tomagotchi {
     constructor(name) {
@@ -49,16 +55,16 @@ class Tomagotchi {
 
     buttonClicks () {
         $("button").on("click", (e) => {
-            if(e.target.id === "feed"){
+            if(e.target.id === "feed" && this.hunger > 0){
                 this.hunger--
                 $("#hunger").text(`Hunger: ${this.hunger}`)
             }
-            else if(e.target.id === "sleep"){
+            else if(e.target.id === "sleep" && this.sleepiness > 0){
                 this.sleepiness--
                 $("#sleepiness").text(`Tired: ${this.sleepiness}`)
 
             }            
-            else if(e.target.id === "play"){
+            else if(e.target.id === "play" && this.boredom > 0){
                 this.boredom--
                 $("#boredom").text(`Boredom: ${this.boredom}`)
             }        
@@ -71,37 +77,60 @@ class Tomagotchi {
             $(this).fadeIn()
         }); 
     }
+
+
+    // move () {
+    //     $("img").animate({width: 150}, 3000, function(){
+    //     });
+    //     $("img").animate({width: 200}, 3000, function(){
+    //     });   
+    // }
+    
 };
 
 
 
-const name = prompt("Name your pet");
-const newTomagotchi = new Tomagotchi(name);
-$("#name").text(name);
+// const name = prompt("Name your pet");
+// const newTomagotchi = new Tomagotchi(name);
+// $("#name").text(name);
 
 const createTomagotchi = () => {
 
 }
 
 const game = {
-    // tomagatchis: [],
+    tomagotchiArr: [],
     timer: 0,
     // render() {
 
     // }
-    
-    
+    start () {
+        const name = prompt("Name your pet");
+        const newTomagotchi = new Tomagotchi(name);
+        $("#name").text(name);
+        this.tomagotchiArr.push(newTomagotchi)
+        newTomagotchi.timer();
+        newTomagotchi.buttonClicks();
+        newTomagotchi.morph();
+        // newTomagotchi.move();
+    },
+
+    hatchEgg() {
+        game.start();
+
+    }
 };
 
 
-const move = () => {
-    $("img").animate({width: 110}, 3000, function(){
-        $("img").animate({width: 200}, 3000)
-    })
-}
+
+// while (this.hunger < 10 || this.sleepiness < 10 || this.boredom < 10 || this.age < 100){
 
 
-newTomagotchi.timer();
-newTomagotchi.buttonClicks();
-newTomagotchi.morph();
-move();
+// newTomagotchi.timer();
+// newTomagotchi.buttonClicks();
+// newTomagotchi.morph();
+// newTomagotchi.move();
+
+$(".start").on("click", (e) => {
+    game.start()
+})

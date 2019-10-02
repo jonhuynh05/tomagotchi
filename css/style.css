@@ -5,7 +5,7 @@
 }
 
 .container {
-    height: 37rem;
+    height: 39rem;
     width: 45rem;
     display: flex;
     flex-direction: column;
@@ -54,13 +54,13 @@ button {
     width: 20%;
     padding: 5px;
     margin: 10px;
-
 }
 
 .status {
     font-size: 16px;
     font-weight: bold;
     margin-top: 5px;
+    margin-bottom: 5px;
     font-family: Arial, Helvetica, sans-serif
 }
 
@@ -73,6 +73,31 @@ button {
     line-height: 2rem;
 }
 
+.image-container{
+    width: 45rem;
+    height: 23rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 img {
+    margin-top: 5px;
     position: relative;
+    animation: alive 1s infinite  alternate;
+}
+
+@keyframes alive {
+    from { transform: translateX(1em); }
+    to { transform: translateX(-1em); }
+}
+
+#start {
+    width: 20%;
+    padding: 5px;
+    margin: 10px;
+}
+
+.start:hover {
+    background-color: rgb(112, 203, 255);
 }
