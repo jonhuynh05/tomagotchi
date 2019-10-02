@@ -1,3 +1,9 @@
+
+const oldImage = "https://wikimon.net/images/thumb/8/84/Agumon_DCDAPM.jpg/200px-Agumon_DCDAPM.jpg";
+const newImage = "https://vignette.wikia.nocookie.net/digi-world/images/6/60/Greymon.gif/revision/latest?cb=20120103233635"
+
+
+
 class Tomagotchi {
     constructor(name) {
         this.name = name;
@@ -21,7 +27,19 @@ class Tomagotchi {
             $("#boredom").text(`Boredom: ${this.boredom}`)
             $("#age").text(`Age: ${this.age}`)
         }
+        if($(".agumon").attr("src") != newImage){
+            this.morph();
+        }
     }, 1000); }
+
+    morph() {
+        if (this.age > 0){
+            $(".agumon").fadeOut(function() {
+                $(this).attr("src", newImage)
+                $(this).fadeIn()
+            }); 
+        }; 
+    }
 
     buttonClicks () {
         $("button").on("click", (e) => {
@@ -80,9 +98,7 @@ const move = () => {
 }
 
 
-
-
-
 newTomagotchi.timer();
 newTomagotchi.buttonClicks();
+newTomagotchi.morph();
 move();
