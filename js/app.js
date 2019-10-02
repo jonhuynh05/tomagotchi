@@ -1,16 +1,10 @@
-
+//IMAGE LIBRARY
 const oldImage = "https://wikimon.net/images/thumb/8/84/Agumon_DCDAPM.jpg/200px-Agumon_DCDAPM.jpg";
 const newImage = "https://vignette.wikia.nocookie.net/digi-world/images/6/60/Greymon.gif/revision/latest?cb=20120103233635"
 const deadImage = "http://www.clker.com/cliparts/U/H/t/l/l/W/rip-tombstone.svg"
 
 
-// const move = () => {
-//     $("img").animate({width: 150}, 3000, function(){
-//     });
-//     $("img").animate({width: 200}, 3000, function(){
-//     });   
-// }
-
+//TOMAGOTCHI
 class Tomagotchi {
     constructor(name) {
         this.name = name;
@@ -24,7 +18,7 @@ class Tomagotchi {
         const interval = setInterval(() => {
         $("#clock").text(`Timer: ${game.timer} sec`);
         game.timer++;
-        if(game.timer%10 === 1 && game.timer >= 10){
+        if(game.timer%5 === 1 && game.timer >= 5){
             this.hunger++;
             this.sleepiness++;
             this.boredom++;
@@ -40,7 +34,10 @@ class Tomagotchi {
         if(this.hunger >= 2 || this.sleepiness >= 2 || this.boredom >= 2 || this.age > 100){
             clearInterval(interval);
             this.dead();
-            $(".status").text(`Status: Dead`)
+            $(".status").text(`Status: Dead`).css("color", "red")
+        }
+        if(this.age > 0 && $("button").length < 5){
+            this.readyParent()
         }
     }, 1000); }
 
@@ -75,29 +72,17 @@ class Tomagotchi {
         $("img").fadeOut(function() {
             $(this).attr({src: deadImage, style: "width: 150px"})
             $(this).fadeIn()
-        }); 
+        });
+        $("img").attr("class", "dead");
     }
 
-
-    // move () {
-    //     $("img").animate({width: 150}, 3000, function(){
-    //     });
-    //     $("img").animate({width: 200}, 3000, function(){
-    //     });   
-    // }
-    
+    readyParent () {
+            const $button = $("<button/>").attr("class", "hatch").text("Hatch an egg");
+            $("body").append($button);
+    }
 };
 
-
-
-// const name = prompt("Name your pet");
-// const newTomagotchi = new Tomagotchi(name);
-// $("#name").text(name);
-
-const createTomagotchi = () => {
-
-}
-
+//GAME OBJECT
 const game = {
     tomagotchiArr: [],
     timer: 0,
@@ -112,25 +97,23 @@ const game = {
         newTomagotchi.timer();
         newTomagotchi.buttonClicks();
         newTomagotchi.morph();
-        // newTomagotchi.move();
     },
 
     hatchEgg() {
         game.start();
-
+        $("body").append($(".container").clone())
     }
 };
 
 
 
-// while (this.hunger < 10 || this.sleepiness < 10 || this.boredom < 10 || this.age < 100){
+//RUNNING CODE
+$("button").on("click", (e) => {
+    if(e.target.className = "start"){
+        game.start()
+    }
+    // if(e.target.className = "hatch"){
+    //     game.hatchEgg()
+    // }
 
-
-// newTomagotchi.timer();
-// newTomagotchi.buttonClicks();
-// newTomagotchi.morph();
-// newTomagotchi.move();
-
-$(".start").on("click", (e) => {
-    game.start()
 })

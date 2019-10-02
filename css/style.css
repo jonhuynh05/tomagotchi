@@ -61,7 +61,8 @@ button {
     font-weight: bold;
     margin-top: 5px;
     margin-bottom: 5px;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
+    color: green;
 }
 
 #clock {
@@ -84,13 +85,27 @@ button {
 img {
     margin-top: 5px;
     position: relative;
-    animation: alive 1s infinite  alternate;
+    /* animation: play 2s alternate; */
+    /* animation-play-state: running; */
+}
+
+.alive {
+    animation: alive 1s infinite alternate;
 }
 
 @keyframes alive {
     from { transform: translateX(1em); }
     to { transform: translateX(-1em); }
 }
+
+.dead {
+    
+}
+
+/* @keyframes play {
+    from { transform: translateY(0.5em); }
+    to { transform: translateY(-0.5em); }
+} */
 
 #start {
     width: 20%;
