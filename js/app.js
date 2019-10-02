@@ -7,19 +7,9 @@ class Tomagotchi {
         this.age = 0;
     }
 
-
-    // hunger () {
-    //     setInterval(() => {
-    //     game.hungerTimer++;
-    //     if(game.hungerTimer%10 === 1){
-    //         this.hunger++ ;
-    //         $("#hunger").text(`Hunger: ${this.hunger}`)
-    //     }
-    // }, 1000); }
-
     timer () {
         setInterval(() => {
-        $("#clock").text(`${game.timer} sec`);
+        $("#clock").text(`Timer: ${game.timer} sec`);
         game.timer++;
         if(game.timer%10 === 1 && game.timer >= 10){
             this.hunger++;
@@ -52,8 +42,15 @@ class Tomagotchi {
     )}
 };
 
-// const name = prompt("Name your pet")
+
+
+const name = prompt("Name your pet");
 const newTomagotchi = new Tomagotchi(name);
+$("#name").text(name);
+
+const createTomagotchi = () => {
+
+}
 
 const game = {
     // tomagatchis: [],
@@ -76,6 +73,16 @@ const game = {
 //     }
 // }, 1000); }
 
+const move = () => {
+    $("img").animate({width: 110}, 3000, function(){
+        $("img").animate({width: 200}, 3000)
+    })
+}
+
+
+
+
 
 newTomagotchi.timer();
 newTomagotchi.buttonClicks();
+move();

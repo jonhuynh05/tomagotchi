@@ -10,18 +10,22 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://wikimon.net/images/thumb/8/84/Agumon_DCDAPM.jpg/200px-Agumon_DCDAPM.jpg">
-        <div class="status-container">
-            <div class="status" id="hunger">Hunger: 0</div>
-            <div class="status" id="sleepiness">Tired: 0</div>
-            <div class="status" id="boredom">Boredom: 0</div>
-            <div class="status" id="age">Age: 0</div>
+        <div id="name"></div>
+        <img class="agumon" src="https://wikimon.net/images/thumb/8/84/Agumon_DCDAPM.jpg/200px-Agumon_DCDAPM.jpg">
+        <div class="feelings-container">
+            <div class="feelings" id="hunger">Hunger: 0</div>
+            <div class="feelings" id="sleepiness">Tired: 0</div>
+            <div class="feelings" id="boredom">Boredom: 0</div>
+            <div class="feelings" id="age">Age: 0</div>
         </div>
         <div class="button-container">
             <button class="button" id="feed">Feed</button>
             <button class="button" id="sleep">Put To Bed</button>
             <button class="button" id="play">Play</button>
             <span id="clock"></span>
+        </div>
+        <div>
+            <div class="status">Status: Alive</div>
         </div>
     </div>
     <script src="js/app.js"></script>
