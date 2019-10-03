@@ -1,8 +1,8 @@
 //IMAGE LIBRARY
 const agumon = "https://vignette.wikia.nocookie.net/p__/images/a/af/Agumon_DA_The_Movie.png/revision/latest?cb=20190707155018&path-prefix=protagonist";
-const greymon = "https://vignette.wikia.nocookie.net/digimon-adventure5140/images/c/ca/Greymon_tri.png/revision/latest?cb=20171010042426"
-const metalgreymon = "https://vignette.wikia.nocookie.net/p__/images/f/fd/Campaign_metalgrey_january20_2017.png/revision/latest?cb=20170130012523&path-prefix=protagonist"
-const deadImage = "http://www.clker.com/cliparts/U/H/t/l/l/W/rip-tombstone.svg"
+const greymon = "https://vignette.wikia.nocookie.net/digimon-adventure5140/images/c/ca/Greymon_tri.png/revision/latest?cb=20171010042426";
+const metalgreymon = "https://vignette.wikia.nocookie.net/p__/images/f/fd/Campaign_metalgrey_january20_2017.png/revision/latest?cb=20170130012523&path-prefix=protagonist";
+const deadImage = "http://www.clker.com/cliparts/U/H/t/l/l/W/rip-tombstone.svg";
 
 
 //TOMAGOTCHI
@@ -20,7 +20,7 @@ class Tomagotchi {
         $("#clock").text(`Timer: ${game.timer} sec`);
         game.timer++;
 
-        if(game.timer%2 === 1 && game.timer >= 2){
+        if(game.timer%3 === 1 && game.timer >= 3){
             this.hunger += Math.floor(Math.random() * 3 + 1);
             this.sleepiness += Math.floor(Math.random() * 3 + 1);
             this.boredom += Math.floor(Math.random() * 3 + 1);
@@ -50,7 +50,7 @@ class Tomagotchi {
     }, 1000); }
 
     morph1() {
-        if (this.age > 0 && this.age < 4){
+        if (this.age > 2 && this.age < 5){
             $("img").fadeOut(function() {
                 $(this).attr("src", greymon)
                 $(this).fadeIn()
@@ -58,7 +58,7 @@ class Tomagotchi {
         }
     }
     morph2() {
-        if (this.age >= 4){
+        if (this.age >= 5){
             $("img").fadeOut(function() {
                 $(this).attr("src", metalgreymon)
                 $(this).fadeIn()
@@ -98,10 +98,10 @@ class Tomagotchi {
         $("img").attr("class", "dead");
     }
 
-    readyParent () {
-            const $button = $("<button/>").attr("class", "hatch").text("Hatch an egg");
-            $(".start").after($button);
-    }
+    // readyParent () {
+    //         const $button = $("<button/>").attr("class", "hatch").text("Hatch an egg");
+    //         $(".start").after($button);
+    // }
 };
 
 //GAME OBJECT
@@ -126,8 +126,6 @@ const game = {
     //     $(".container").after($(".container").clone())
     // }
 };
-
-
 
 //RUNNING CODE
 $("button").on("click", (e) => {
