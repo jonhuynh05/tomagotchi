@@ -29,7 +29,7 @@ class Tomagotchi {
             this.sleepiness += Math.floor(Math.random() * 3 + 1);
             this.boredom += Math.floor(Math.random() * 3 + 1);
             this.age++;
-            $(".lights-out").attr("class", "container");
+            $(".lights-out").attr("class", "image-container");
             $(".play").attr("class", "agumon alive");
             $(".feed").attr("class", "agumon alive");
             $("#hunger").text(`Hunger: ${this.hunger}`)
@@ -81,7 +81,7 @@ class Tomagotchi {
             else if(e.target.id === "sleep" && this.sleepiness > 0 && $("img").attr("class") !== "dead"){
                 this.sleepiness--
                 $("#sleepiness").text(`Tired: ${this.sleepiness}`)
-                $(".container").attr("class", "container lights-out")
+                $(".image-container").attr("class", "image-container lights-out")
 
             }            
             else if(e.target.id === "play" && this.boredom > 0 && $("img").attr("class") !== "dead"){
