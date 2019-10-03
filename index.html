@@ -7,13 +7,17 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <title>Tomagotchi</title>
 </head>
 <body>
     <div class="container">
-        <div id="name"></div>
+        <div class="title">Tomagotchi</div>
         <div class="image-container">
+            <div class="hills" id="hill-1"></div>
+            <div class="hills" id="hill-2"></div>
+            <div class="food-before"></div>
             <img class="agumon alive" src="https://vignette.wikia.nocookie.net/p__/images/a/af/Agumon_DA_The_Movie.png/revision/latest?cb=20190707155018&path-prefix=protagonist" height=200px>
         </div>
         <div class="feelings-container">
@@ -28,10 +32,14 @@
             <button class="action" id="play">Play</button>
             <span id="clock"></span>
         </div>
+        <div id="name"></div>
         <div>
             <div class="status">Status: Alive</div>
         </div>
+        <div class="game-buttons-container">
         <button class="start">Start Game</button>
+        <button class="reset">Reset</button>
+        </div>
     </div>
     <script src="js/app.js"></script>
 </body>

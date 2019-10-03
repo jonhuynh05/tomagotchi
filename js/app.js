@@ -20,18 +20,14 @@ class Tomagotchi {
         $("#clock").text(`Timer: ${game.timer} sec`);
         game.timer++;
 
-        if(game.timer%5 === 1 && game.timer >= 5){
-            // this.hunger++;
-            // this.sleepiness++;
-            // this.boredom++;
-            // this.age++;
+        if(game.timer%2 === 1 && game.timer >= 2){
             this.hunger += Math.floor(Math.random() * 3 + 1);
             this.sleepiness += Math.floor(Math.random() * 3 + 1);
             this.boredom += Math.floor(Math.random() * 3 + 1);
             this.age++;
             $(".lights-out").attr("class", "image-container");
             $(".play").attr("class", "agumon alive");
-            $(".feed").attr("class", "agumon alive");
+            $(".food-after").attr("class", "food-before");
             $("#hunger").text(`Hunger: ${this.hunger}`)
             $("#sleepiness").text(`Tired: ${this.sleepiness}`)
             $("#boredom").text(`Boredom: ${this.boredom}`)
@@ -76,7 +72,7 @@ class Tomagotchi {
             if(e.target.id === "feed" && this.hunger > 0 && $("img").attr("class") !== "dead"){
                 this.hunger--
                 $("#hunger").text(`Hunger: ${this.hunger}`)
-                $("img").attr("class", "feed")
+                $(".food-before").attr("class", "food-after");
             }
             else if(e.target.id === "sleep" && this.sleepiness > 0 && $("img").attr("class") !== "dead"){
                 this.sleepiness--
@@ -121,6 +117,10 @@ const game = {
         newTomagotchi.buttonClicks();
     },
 
+    reset() {
+        location.reload()
+    }
+
     // hatchEgg() {
     //     game.start();
     //     $(".container").after($(".container").clone())
@@ -133,6 +133,9 @@ const game = {
 $("button").on("click", (e) => {
     if(e.target.className === "start" && game.timer === 0){
         game.start()
+    }
+    if(e.target.className === "reset" && game.timer > 0){
+        game.reset()
     }
     // if(e.target.className === "hatch"  && $(".container").length < 2){
     //     game.hatchEgg()
